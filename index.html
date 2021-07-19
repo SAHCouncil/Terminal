@@ -1,68 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
-<style>
-.terminal {
-  --size: 1.2;
-}
-</style>
+<title>
+Nuke Control Panel
+</title>
 </head>
+<body>
+<iframe src="https://script.google.com/macros/s/AKfycbz-8p3qNigDHWB0UisNJAt_4RFNcYtJ7sPX_F0RnIGKDu23JkHZJs1vSrhVxD0YViaB9w/exec" title="Terminal"></iframe>
+</body>
 </html>
-
-<script>
-var passw = "ad";
-var namm = "as"
-var floo = "ad"
-$('body').terminal(
-{
-    pass: function(password) {
-	if(password == "qwerty"){
-		this.echo('correct password, what is your name?');
-		passw = password
-	}
-        else{
-		this.echo('wrong password');
-	}
-    },
-    name: function(names) {
-	if(passw == "qwerty"){
-		this.echo('good name, ' + names + '. Which floor do you live in?');
-		namm = names
-	}
-        else{
-		this.echo('you hanve not put the password');
-	}
-    },
-    floor: function(floors) {
-	if(passw == "qwerty"){
-		this.echo('nice floor, ' + floors + '. Please click the link and submit it');
-		floo = floors
-		this.echo('data: ' + namm + ' ' + floors + ' ' + passw);
-	}
-        else{
-		this.echo('you hanve not put the password');
-	}
-    }
-},
-{
-    greetings: `
-
-███╗░░██╗██╗░░░██╗██╗░░██╗███████╗  ░█████╗░░█████╗░███╗░░██╗████████╗██████╗░░█████╗░██╗░░░░░
-████╗░██║██║░░░██║██║░██╔╝██╔════╝  ██╔══██╗██╔══██╗████╗░██║╚══██╔══╝██╔══██╗██╔══██╗██║░░░░░
-██╔██╗██║██║░░░██║█████═╝░█████╗░░  ██║░░╚═╝██║░░██║██╔██╗██║░░░██║░░░██████╔╝██║░░██║██║░░░░░
-██║╚████║██║░░░██║██╔═██╗░██╔══╝░░  ██║░░██╗██║░░██║██║╚████║░░░██║░░░██╔══██╗██║░░██║██║░░░░░
-██║░╚███║╚██████╔╝██║░╚██╗███████╗  ╚█████╔╝╚█████╔╝██║░╚███║░░░██║░░░██║░░██║╚█████╔╝███████╗
-╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝╚══════╝  ░╚════╝░░╚════╝░╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝░╚════╝░╚══════╝
-
-██████╗░░█████╗░███╗░░██╗███████╗██╗░░░░░
-██╔══██╗██╔══██╗████╗░██║██╔════╝██║░░░░░
-██████╔╝███████║██╔██╗██║█████╗░░██║░░░░░
-██╔═══╝░██╔══██║██║╚████║██╔══╝░░██║░░░░░
-██║░░░░░██║░░██║██║░╚███║███████╗███████╗
-╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚══╝╚══════╝╚══════╝                                                                                                    
-`
-});
-</script>
