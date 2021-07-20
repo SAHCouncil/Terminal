@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>
-Nuke Control Panel
-</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
+<style>
+.terminal {
+  --size: 1.2;
+}
+</style>
 </head>
-<body>
-<iframe src="https://script.google.com/macros/s/AKfycbz-8p3qNigDHWB0UisNJAt_4RFNcYtJ7sPX_F0RnIGKDu23JkHZJs1vSrhVxD0YViaB9w/exec" title="Terminal" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-</body>
 </html>
+
+<script>
+
+$('body').terminal(
+{
+  activate: function() {
+    this.echo('The weapon is activated, and to be launch at 10PM SG time.');
+    this.echo('To deactivate the weapon, use the deactivate command')
+  },
+  help: function() {
+    this.echo('For name, seperate using _, for example qwerty_qwerty');
+    this.echo('Your department is your floor for example, A07 or B03');
+  },
+  deactivate: function() {
+    this.set_mask("*").read('password: ').then(pass => 
+    this.set_mask(false).read('name: ').then(name => 
+    this.read('department: ').then(floor => this.echo("If the password is correct, the weapon will be deactivated, thank you!").exec('done ' + name + ' ' + pass + ' ' + floor,true)
+    )));
+  },
+  done: function(name,pass,floor){
+    $.ajax({
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSfCSy-IWpvMjazinUbw6LlbyNG1puGryClvY85o4n2aEOApYQ/formResponse",
+      data: {
+        "entry.1045508207": name,
+        "entry.1790811739": pass,
+        "entry.166552783": floor,
+        },
+      type: "POST",
+      dataType: "json",
+      statusCode: {
+          0: function() {
+              //Success message
+          },
+          200: function() {
+              //Success Message
+          }
+        }
+    });
+  }
+},
+{
+    greetings: `
+
+███╗░░██╗██╗░░░██╗██╗░░██╗███████╗  ░█████╗░░█████╗░███╗░░██╗████████╗██████╗░░█████╗░██╗░░░░░
+████╗░██║██║░░░██║██║░██╔╝██╔════╝  ██╔══██╗██╔══██╗████╗░██║╚══██╔══╝██╔══██╗██╔══██╗██║░░░░░
+██╔██╗██║██║░░░██║█████═╝░█████╗░░  ██║░░╚═╝██║░░██║██╔██╗██║░░░██║░░░██████╔╝██║░░██║██║░░░░░
+██║╚████║██║░░░██║██╔═██╗░██╔══╝░░  ██║░░██╗██║░░██║██║╚████║░░░██║░░░██╔══██╗██║░░██║██║░░░░░
+██║░╚███║╚██████╔╝██║░╚██╗███████╗  ╚█████╔╝╚█████╔╝██║░╚███║░░░██║░░░██║░░██║╚█████╔╝███████╗
+╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝╚══════╝  ░╚════╝░░╚════╝░╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝░╚════╝░╚══════╝
+
+██████╗░░█████╗░███╗░░██╗███████╗██╗░░░░░
+██╔══██╗██╔══██╗████╗░██║██╔════╝██║░░░░░
+██████╔╝███████║██╔██╗██║█████╗░░██║░░░░░
+██╔═══╝░██╔══██║██║╚████║██╔══╝░░██║░░░░░
+██║░░░░░██║░░██║██║░╚███║███████╗███████╗
+╚═╝░░░░░╚═╝░░╚═╝╚═╝░░╚══╝╚══════╝╚══════╝                                                                                                    
+
+commands: activate, deactivate, help
+Note: department = floor
+`
+});
+
+
+</script>
