@@ -25,18 +25,20 @@ $('body').terminal(
     this.echo('Your department is your floor for example, A07 or B03');
   },
   deactivate: function() {
-    this.set_mask("*").read('password: ').then(pass => 
+    this.set_mask("*").read('password 1: ').then(pass1 => 
+    this.set_mask("*").read('password 2: ').then(pass2 => 
     this.set_mask(false).read('name: ').then(name => 
-    this.read('department: ').then(floor => this.echo("If the password is correct, the weapon will be deactivated, thank you!").exec('done ' + name + ' ' + pass + ' ' + floor,true)
-    )));
+    this.read('department: ').then(floor => this.echo("If the password is correct, the weapon will be deactivated, thank you!").exec('done ' + name + ' ' + pass1 + ' ' + pass2 + ' ' + floor,true)
+    ))));
   },
-  done: function(name,pass,floor){
+  done: function(name,pass1,pass2,floor){
     $.ajax({
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSfCSy-IWpvMjazinUbw6LlbyNG1puGryClvY85o4n2aEOApYQ/formResponse",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSdUXZR3Q_yek0BDWKhuzka8Szt9XtJyiZw4os7QhaRvi47fAg/formResponse",
       data: {
-        "entry.1045508207": name,
-        "entry.1790811739": pass,
-        "entry.166552783": floor,
+        "entry.129441319": name,
+        "entry.1298532354": pass1,
+        "entry.986246827": pass2,
+        "entry.445924715": floor,
         },
       type: "POST",
       dataType: "json",
