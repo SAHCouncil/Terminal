@@ -27,8 +27,8 @@ $('body').terminal(
   deactivate: function() {
     this.set_mask("*").read('password 1: ').then(pass1 => 
     this.set_mask("*").read('password 2: ').then(pass2 => 
-    this.set_mask(false).read('name: ').then(name => 
-    this.read('department: ').then(floor => this.echo("If the password is correct, the weapon will be deactivated, thank you!").exec('done ' + name + ' ' + pass1 + ' ' + pass2 + ' ' + floor,true)
+    this.set_mask(false).read('Good job SAH spy agent, this is Andrew, the undercover spy agent, may I know your name? ').then(name => 
+    this.read('Which department(floor) are you from? ').then(floor => this.echo("If the password is correct, the weapon will be deactivated, thank you! for your help in deactivating the weapon").exec('done ' + name + ' ' + pass1 + ' ' + pass2 + ' ' + floor,true)
     ))));
   },
   done: function(name,pass1,pass2,floor){
